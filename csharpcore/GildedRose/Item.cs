@@ -23,7 +23,7 @@
                 case "Backstage passes":
                     switch (sellIn)
                     {
-                        case <= 0:
+                        case < 0:
                             quality = 0;
                             break;
                         case <= 5:
