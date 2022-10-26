@@ -19,6 +19,7 @@ namespace GildedRoseTests
             new EventItem("Backstage Pass", 10, 10),
             new EventItem("Backstage Pass", 5, 10),
             new EventItem("Backstage Pass", -1, 10),
+            new ConjuredItem("Conjured Sword", 10, 10),
         };
 
         [TestInitialize]
@@ -88,6 +89,12 @@ namespace GildedRoseTests
         public void Should_IncreaseBackstagePassQualityToZeroAfterEvent()
         {
             Assert.AreEqual(0, this.shop.Items[9].quality);
+        }
+        
+        [TestMethod]
+        public void Should_DecreaseQualityTwiceAsFastWhenItemIsConjured()
+        {
+            Assert.AreEqual(8, this.shop.Items[10].quality);
         }
     }
     
