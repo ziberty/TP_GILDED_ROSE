@@ -5,19 +5,21 @@ namespace GildedRoseKata
 {
     public class Shop
     {
-        public IList<Item> Items { get; }
-
-        public Shop(IList<Item> items)
+        private ItemsRepository itemsRepository;
+        
+        public Shop(ItemsRepository itemsRepository)
         {
-            this.Items = items;
+            this.itemsRepository = itemsRepository;
         }
 
         public void UpdateQuality()
         {
-            foreach(Item item in this.Items)
+            IList<Item> items = this.itemsRepository.GetInventory();
+            foreach(Item item in items)
             {
                 item.Update();
             }
+            this.itemsRepository.SaveInventory(items);
         }
     }
 }
