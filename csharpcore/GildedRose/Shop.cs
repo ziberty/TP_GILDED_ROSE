@@ -32,6 +32,7 @@ namespace GildedRoseKata
             {
                 this.itemsRepository.GetInventory().Remove(item);
                 this.balance += item.GetValue();
+                this.itemsRepository.SaveInventory(this.itemsRepository.GetInventory());
             }
             else
             {

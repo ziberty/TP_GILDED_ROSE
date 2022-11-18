@@ -7,7 +7,7 @@ namespace GildedRoseKata
     {
         public static void Main(string[] args)
         {
-
+            
         }
     }
 }
