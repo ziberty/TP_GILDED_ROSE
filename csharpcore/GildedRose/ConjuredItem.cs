@@ -2,7 +2,7 @@
 {
     public class ConjuredItem : Item
     {
-        public ConjuredItem(string name, int sellIn, int quality) : base(name, sellIn, quality)
+        public ConjuredItem(string name, int sellIn, int quality, int basePrice) : base(name, sellIn, quality, basePrice)
         {
 
         }

@@ -4,7 +4,7 @@ namespace GildedRoseKata
 {
     public class GenericItem : Item
     {
-        public GenericItem(string name, int sellIn, int quality) :base(name, sellIn, quality)
+        public GenericItem(string name, int sellIn, int quality, int basePrice) :base(name, sellIn, quality, basePrice)
         {
 
         }

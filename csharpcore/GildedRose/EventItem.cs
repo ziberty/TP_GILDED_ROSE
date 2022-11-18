@@ -4,7 +4,7 @@ namespace GildedRoseKata
 {
     public class EventItem : Item
     {
-        public EventItem(string name, int sellIn, int quality) : base(name, sellIn, quality)
+        public EventItem(string name, int sellIn, int quality, int basePrice) : base(name, sellIn, quality, basePrice)
         {
 
         }

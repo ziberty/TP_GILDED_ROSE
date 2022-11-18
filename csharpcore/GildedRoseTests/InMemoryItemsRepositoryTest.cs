@@ -11,10 +11,10 @@ namespace GildedRoseTests
         public InMemoryItemsRepository InMemoryItemsRepository = new InMemoryItemsRepository();
         private List<Item> itemsInventory = new List<Item>()
         {
-            new GenericItem("Wang", 10, 9),
-            new AgingItem("Aged Brie", 5, 4),
-            new AgingItem("Aged Brie", 5, 50),
-            new LegendaryItem("Sulfuras", 5, 80),
+            new GenericItem("Wang", 10, 9, 15),
+            new AgingItem("Aged Brie", 5, 4, 6),
+            new AgingItem("Aged Brie", 5, 50, 23),
+            new LegendaryItem("Sulfuras", 5, 80, 69),
         };
 
         [TestInitialize]
@@ -33,7 +33,7 @@ namespace GildedRoseTests
         public void Should_AddOneItemToItemsInventory()
         {
             int initialInventoryItemsCount = InMemoryItemsRepository.GetInventory().Count;
-            itemsInventory.Add(new ConjuredItem("Conjured Sword", 10, 10));
+            itemsInventory.Add(new ConjuredItem("Conjured Sword", 10, 10, 25));
             InMemoryItemsRepository.SaveInventory(itemsInventory);
             int newInventoryItemsCount = InMemoryItemsRepository.GetInventory().Count;
             Assert.AreEqual(1, newInventoryItemsCount - initialInventoryItemsCount);

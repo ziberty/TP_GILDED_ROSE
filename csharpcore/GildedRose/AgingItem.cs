@@ -4,7 +4,7 @@ namespace GildedRoseKata
 {
     public class AgingItem : Item
     {
-        public AgingItem(string name, int sellIn, int quality) : base(name, sellIn, quality)
+        public AgingItem(string name, int sellIn, int quality, int basePrice) : base(name, sellIn, quality, basePrice)
         {
 
         }
