@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace GildedRoseKata
 {
-    public class InMemoryItemsRepository : ItemsRepository
+    public class InMemoryItemsRepository : ItemsGateway
     {
         private IList<Item> items = new List<Item>(){
             new GenericItem("Wang", 10, 9, 20),

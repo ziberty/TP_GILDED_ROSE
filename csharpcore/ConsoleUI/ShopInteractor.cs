@@ -1,40 +1,54 @@
-﻿using GildedRoseKata;
-namespace ConsoleUIKata
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using ConsoleUIKata;
+
+namespace GildedRoseKata
 {
-    public class ConsoleUI
+    public class ShopInteractor
     {
-        static ItemsRepository itemsRepository = new InMemoryItemsRepository();
-        static Shop shop = new Shop(itemsRepository);
-        
+        private static ConsoleView _consoleView = new ConsoleView();
+        static ConsoleController _controller = new ConsoleController(itemsGateway);
+        static ItemsGateway itemsGateway = new InMemoryItemsRepository();
+        static List<ItemResponse> inventory = new List<ItemResponse>();
+
+        private static void SetInventory()
+        {
+            inventory = itemsGateway.GetInventory().Select(item =>
+                new ItemResponse(item.name, item.sellIn, item.quality, item.GetValue())).ToList();
+        }
+
         public static void Main(string[] args)
         {
+            SetInventory();
+            
             while (true)
             {
                 DisplayMenu();
                 switch (Console.ReadLine())
                 {
                     case "1":
-                        ShowShopItems();
+                        _consoleView.DisplayInventory(inventory);
                         break;
                     case "2":
-                        Console.WriteLine("Solde du magain : " + shop.Balance + "$");
+                        _consoleView.DisplayBalance(_controller.Balance);
                         break;
                     case "3":
-                        shop.UpdateInventory();
+                        _controller.UpdateInventory();
                         Console.WriteLine("Les articles ont été mis à jour.");
                         break;
                     case "4":
-                        ShowShopItems();
+                        _consoleView.DisplayInventory(inventory);
                         Console.WriteLine("\nQuel objet voulez vous vendre ?");
-                        Item item = itemsRepository.GetInventory().ElementAt(int.Parse(Console.ReadLine()) - 1);
-                        shop.SellItem(item.name, item.quality);
+                        Item item = itemsGateway.GetInventory().ElementAt(int.Parse(Console.ReadLine()) - 1);
+                        _controller.SellItem(new SellItemRequest(item.name, item.quality));
                         break;
                     case "5":
                         return;
                 }
             }
         }
-
+        
         public static void DisplayMenu()
         {
             Console.WriteLine("----- BIENVENUE DANS LA BOUTIQUE GILDED ROSE -----");
@@ -45,14 +59,5 @@ namespace ConsoleUIKata
             Console.WriteLine("4) Vendre un article");
             Console.WriteLine("5) Quitter");
         }
-
-        public static void ShowShopItems()
-        {
-            foreach (Item item in itemsRepository.GetInventory())
-            {
-                Console.WriteLine((itemsRepository.GetInventory().IndexOf(item) + 1) + " - " + item.name + " - " + item.GetValue() + "$");
-            }
-        }
     }
 }
-

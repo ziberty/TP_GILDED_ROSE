@@ -5,7 +5,7 @@ using Microsoft.VisualBasic.FileIO;
 
 namespace GildedRoseKata
 {
-    public class FileItemsRepository : ItemsRepository
+    public class FileItemsRepository : ItemsGateway
     {
         private IList<Item> inventoryItems = new List<Item>();
         private const string Path = @"inventoryItems.csv";
